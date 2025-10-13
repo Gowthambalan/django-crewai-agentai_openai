@@ -1,0 +1,19 @@
+# Ignore sensitive variable files
+.env
+*.env
+.env.*
+
+# Ignore Python bytecode files
+__pycache__/    
+
+#Ignore yaml files
+*.yaml
+*.yml
+# Ignore database files
+db.sqlite3
+*.db
+*.sqlite3
+# Ignore media files
+media/
+# Ignore static files
+

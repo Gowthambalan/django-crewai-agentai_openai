@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CrewAI Decision Agent Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            padding: 40px;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 60%;
+            height: 100px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #2563eb;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1e3a8a;
+        }
+        .result-box {
+            background: white;
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>CrewAI Decision Agent</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="query" placeholder="Enter your query here...">{{ query }}</textarea><br><br>
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if result %}
+        <div class="result-box">
+            <h3>Decision: {{ result.decision }}</h3>
+            <p><strong>Response:</strong> {{ result.answer }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
