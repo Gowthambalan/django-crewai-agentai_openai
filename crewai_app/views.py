@@ -1,6 +1,26 @@
+# from django.shortcuts import render
+# from .crew_orchestrator import route_query
+
+# def home(request):
+#     result = None
+#     query = None
+
+#     if request.method == "POST":
+#         query = request.POST.get("query")
+#         if query:
+#             result = route_query(query)
+
+#     return render(request, "home.html", {"result": result, "query": query})
+
+
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 from .crew_orchestrator import route_query
 
+
+# 🖥️ Browser view (renders HTML page)
 def home(request):
     result = None
     query = None
@@ -11,3 +31,27 @@ def home(request):
             result = route_query(query)
 
     return render(request, "home.html", {"result": result, "query": query})
+
+
+# 🔌 API endpoint for Postman (returns JSON)
+@csrf_exempt  # disable CSRF just for testing via Postman
+def api_query(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            user_query = data.get("query")
+
+            if not user_query:
+                return JsonResponse({"error": "Missing 'query' field"}, status=400)
+
+            result = route_query(user_query)
+            return JsonResponse({
+                "query": user_query,
+                "decision": result["decision"],
+                "response": result["answer"]
+            })
+
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    return JsonResponse({"error": "Only POST method allowed"}, status=405)
