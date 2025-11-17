@@ -5,7 +5,7 @@
 # from .crew_orchestrator import route_query
 
 
-# # 🖥️ Browser view (renders HTML page)
+# #  Browser view (renders HTML page)
 # def home(request):
 #     result = None
 #     query = None
@@ -18,7 +18,7 @@
 #     return render(request, "home.html", {"result": result, "query": query})
 
 
-# # 🔌 API endpoint for Postman (returns JSON)
+# #  API endpoint for Postman (returns JSON)
 # @csrf_exempt  # disable CSRF just for testing via Postman
 # def api_query(request):
 #     if request.method == "POST":
