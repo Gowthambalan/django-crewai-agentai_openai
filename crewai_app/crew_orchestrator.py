@@ -2,7 +2,7 @@ import os
 import yaml
 from dotenv import load_dotenv
 from crewai import Agent, Task, LLM
-from .models import QueryLog  # ✅ Import model
+from .models import QueryLog  # Import model
 
 # Load environment variables
 load_dotenv()
@@ -77,7 +77,7 @@ def route_query(user_query: str):
         answer = web_agent.execute_task(web_task)
         routed_to = "WebAgent"
 
-    # ✅ Save query + response to PostgreSQL
+    #  Save query + response to PostgreSQL
     QueryLog.objects.create(
         user_query=user_query,
         decision=routed_to,
