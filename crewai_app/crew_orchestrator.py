@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from crewai import Agent, Task, LLM
 from .models import QueryLog  # Import model
 
-# Load environment variables
+
 load_dotenv()
 
 AGENTS_FILE = os.path.join(os.path.dirname(__file__), "agents.yaml")
